@@ -26,8 +26,21 @@
             ></router-link>
           </div>
         </div>
-        <div class="card w-full bg-base-300 shadow-xl p-5">
-          <h2 class="text-center"><span>Al - Quran</span></h2>
+        <div
+          class="card w-full bg-base-300 shadow-xl p-5 grid ip:grid-cols-3 gap-1"
+        >
+          <div class="w-5">
+            <h1><i class="fa-solid fa-book-quran text-5xl"></i></h1>
+          </div>
+          <div class="w-20 mt-auto mx-auto text-center font-bold">
+            <h1>Hijaiyah</h1>
+            <p>Full Huruf</p>
+          </div>
+          <div class="w-auto mt-auto ms-auto">
+            <button class="text-4xl text-success text-end" @click="getHuruf">
+              <i class="fa-solid fa-circle-chevron-right"></i>
+            </button>
+          </div>
         </div>
       </div>
     </div>
@@ -35,7 +48,28 @@
 </template>
 
 <script>
-export default {};
+export default {
+  data() {
+    return {
+      token: localStorage.getItem("token"),
+    };
+  },
+  mounted() {
+    if (!this.token) {
+    }
+    console.log(this.token);
+  },
+  methods: {
+    getHuruf() {
+      if (!this.token) {
+        this.$swal("Untuk Mengakses Fitur Ini Anda Harus Login");
+        this.$router.push({ name: "login" });
+      } else {
+        this.$router.push({ name: "huruf" });
+      }
+    },
+  },
+};
 </script>
 
 <style></style>
